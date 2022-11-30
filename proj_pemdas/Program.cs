@@ -9,7 +9,7 @@ namespace proj_pemdas
             //setup
             Console.SetWindowSize(120, 40);
             Console.WriteLine("Hello World!");
-            Console.WriteLine("Hello World!");
+          
         }
     }
 }
