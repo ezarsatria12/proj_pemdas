@@ -8,7 +8,7 @@ namespace proj_pemdas
 {
     internal class showdata
     {
-        public void color()
+        public void submenu()
         {
             Console.WriteLine("####################");
             Console.WriteLine("# ini data #");

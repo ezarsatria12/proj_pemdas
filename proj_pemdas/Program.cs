@@ -32,6 +32,31 @@ namespace proj_pemdas
             apalah.second();
 
         }
+        public void wrong()
+        {
+            //setup
+            Console.SetWindowSize(120, 40);
+            Program apalah = new Program();
+
+            //title
+            Console.WriteLine("####################");
+            Console.WriteLine("# HOTEL RESERVATION #");
+            Console.WriteLine("#####################");
+
+            //mainmenu
+            Console.WriteLine("");
+            Console.WriteLine("MAIN MENU :");
+            Console.WriteLine("");
+            Console.WriteLine("1. add reservation \t| 4. check out");
+            Console.WriteLine("2. edit reservation \t| 5. exit");
+            Console.WriteLine("3. show data \t\t|");
+            //Console.WriteLine("======================================");
+            Console.WriteLine("");
+            Console.ForegroundColor= ConsoleColor.Red;
+            Console.WriteLine("ERROR : Input yang anda masukan salah");
+            Console.ResetColor();
+            apalah.second();
+        }
         public void second()
         {
             int men;
@@ -56,24 +81,23 @@ namespace proj_pemdas
             {
                 case 1:
                     Console.Clear();
-                    add.color();
+                    add.submenu();
                     break;
                 case 2:
                     Console.Clear();
-                    edit.color();
+                    edit.submenu();
                     break;
                 case 3:
                     Console.Clear();
-                    show.color();
+                    show.submenu();
                     break;
                 case 4:
                     Console.Clear();
-                    delete.color();
+                    delete.submenu();
                     break;
                 default:
-                    Console.WriteLine("");
-                    Console.WriteLine("Input yang anda masukan salah");
-                    komen.second();
+                    Console.Clear();
+                    komen.wrong();
                     break;
 
             }

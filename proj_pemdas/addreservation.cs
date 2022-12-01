@@ -11,7 +11,7 @@ namespace proj_pemdas
 {
     internal class addreservation
     {
-      public void color()
+      public void submenu()
         {
             Console.WriteLine("####################");
             Console.WriteLine("# ini reservasi #");
@@ -21,7 +21,8 @@ namespace proj_pemdas
         }
         private void GetUserDetails()
         {
-            var json = File.ReadAllText("E:\\MMS\\kuliah\\proj_pemdas\\proj_pemdas\\data.json");
+            //file data.json di ada di folder bin/debug/net5.0/data.json
+            var json = File.ReadAllText("./data.json");
             try
             {
                 var jObject = JObject.Parse(json);

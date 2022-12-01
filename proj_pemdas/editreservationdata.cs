@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace proj_pemdas
 {
-    internal class deletereservation
+    internal class editreservationdata
     {
-        public void submenu()
+        public void sub2()
         {
             Console.WriteLine("####################");
-            Console.WriteLine("# ini delet #");
+            Console.WriteLine("# HOTEL RESERVATION #");
             Console.WriteLine("#####################");
         }
     }
