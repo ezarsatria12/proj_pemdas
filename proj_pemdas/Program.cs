@@ -10,52 +10,30 @@ namespace proj_pemdas
 
     internal class Program
     {
+        public void title()
+        {
+            //title
+            Console.WriteLine("+-------------------------------+");
+            Console.WriteLine("|\tHOTEL RESERVATION\t|");
+            Console.WriteLine("+-------------------------------+");
+        }
         static void Main(string[] args)
         {
             //setup
             Console.SetWindowSize(120, 40);
             Program apalah = new Program();
 
-            //title
-            Console.WriteLine("####################");
-            Console.WriteLine("# HOTEL RESERVATION #");
-            Console.WriteLine("#####################");
+            apalah.title();
 
             //mainmenu
             Console.WriteLine("");
             Console.WriteLine("MAIN MENU :");
             Console.WriteLine("");
-            Console.WriteLine("1. add reservation \t| 4. check out");
-            Console.WriteLine("2. edit reservation \t| 5. exit");
-            Console.WriteLine("3. show data \t\t|");
+            Console.WriteLine("1. add reservation \t| 3. show data");
+            Console.WriteLine("2. edit reservation \t| 4. check out");
             //Console.WriteLine("======================================");
             apalah.second();
 
-        }
-        public void wrong()
-        {
-            //setup
-            Console.SetWindowSize(120, 40);
-            Program apalah = new Program();
-
-            //title
-            Console.WriteLine("####################");
-            Console.WriteLine("# HOTEL RESERVATION #");
-            Console.WriteLine("#####################");
-
-            //mainmenu
-            Console.WriteLine("");
-            Console.WriteLine("MAIN MENU :");
-            Console.WriteLine("");
-            Console.WriteLine("1. add reservation \t| 4. check out");
-            Console.WriteLine("2. edit reservation \t| 5. exit");
-            Console.WriteLine("3. show data \t\t|");
-            //Console.WriteLine("======================================");
-            Console.WriteLine("");
-            Console.ForegroundColor= ConsoleColor.Red;
-            Console.WriteLine("ERROR : Input yang anda masukan salah");
-            Console.ResetColor();
-            apalah.second();
         }
         public void second()
         {
@@ -65,6 +43,7 @@ namespace proj_pemdas
             Console.WriteLine("");
             Console.Write("Pilih Menu : ");
             men = int.Parse(Console.ReadLine());
+            Console.WriteLine("");
             chose.Apph(men);
         }
     }
@@ -74,7 +53,7 @@ namespace proj_pemdas
         editreservation edit = new editreservation();
         showdata show = new showdata();
         deletereservation delete = new deletereservation();
-        Program komen = new Program();
+        Program back = new Program();
         public void Apph(int x)
         {
             switch(x)
@@ -96,8 +75,10 @@ namespace proj_pemdas
                     delete.submenu();
                     break;
                 default:
-                    Console.Clear();
-                    komen.wrong();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("ERROR : Input yang anda masukan tidak tersedia");
+                    Console.ResetColor();
+                    back.second();
                     break;
 
             }

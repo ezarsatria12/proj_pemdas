@@ -8,6 +8,20 @@ namespace proj_pemdas
 {
     internal class editreservation
     {
+        public void coba1()
+        {
+            editreservation ba = new editreservation();
+            ba.submenu();
+            ba.subsecond();
+        }
+        public void coba2()
+        {
+            editreservation ba = new editreservation();
+            ba.submenu();
+            ba.subwrong();
+            ba.subsecond();
+            
+        }
         public void submenu()
         {
             Console.WriteLine("####################");
@@ -17,22 +31,17 @@ namespace proj_pemdas
             Console.WriteLine("1.Edit Reservasi Data");
             Console.WriteLine("2.Cancel Reservasi Data");
             editreservation asd = new editreservation();
-            asd.subsecond();
+        
+            
         }
         public void subwrong()
         {
-            Console.WriteLine("####################");
-            Console.WriteLine("# ini edit reservasi #");
-            Console.WriteLine("#####################");
-            Console.WriteLine("");
-            Console.WriteLine("1.Edit Reservasi Data");
-            Console.WriteLine("2.Cancel Reservasi Data");
+            
             Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("ERROR : Input yang anda masukan salah");
             Console.ResetColor();
-            editreservation asd = new editreservation();
-            asd.subsecond();
+            
 
         }
         public void subsecond()
@@ -52,6 +61,7 @@ namespace proj_pemdas
         editreservationdata edit = new editreservationdata();
         cancelreservationdata cancel = new cancelreservationdata();
         editreservation wrong = new editreservation();
+        
         public void subswitch(int sub)
         {
             switch(sub)
@@ -66,7 +76,7 @@ namespace proj_pemdas
                     break;
                 default:
                     Console.Clear();
-                    wrong.subwrong();
+                    wrong.coba2();
                     break;
 
             }

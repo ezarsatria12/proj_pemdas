@@ -10,30 +10,53 @@
         "node_modules",
         "wwwroot"
     ],
-    
-        "id": 123,
-        "name": "Mukesh Kumar",
-        "address": {
-            "street": "El Camino Real",
-            "city": "New Delhi",
-            "zipcode": 95014
-        },
-        "experiences": [
-            {
-                "companyid": 77,
-                "companyname": "Mind Tree LTD"
-            },
-            {
-                "companyid": 89,
-                "companyname": "TCS"
-            },
-            {
-                "companyid": 22,
-                "companyname": "Hello World LTD"
-            }
-        ],
-        "phoneNumber": 9988664422,
-        "role": "Developer"
-   
-}
+    "data": [
 
+        {
+            "id": 1,
+            "nama": "ezar",
+            "nik": 123456789,
+            "nohp": 123456789,
+            "datein": 123456,
+            "time": "12:00"
+        },
+
+        {
+            "id": 2,
+            "nama": "edgar",
+            "nik": 13546879,
+            "nohp": 5648521469,
+            "datein": 12456,
+            "time": "18:22"
+        },
+
+        {
+            "id": 3,
+            "nama": null,
+            "nik": null,
+            "nohp": null,
+            "datein": null,
+            "time": null
+
+        },
+
+        {
+            "id": 4,
+            "nama": null,
+            "nik": null,
+            "nohp": null,
+            "datein": null,
+            "time": null
+        },
+
+        {
+            "id": 5,
+            "nama": null,
+            "nik": null,
+            "nohp": null,
+            "datein": null,
+            "time": null
+        }
+    ]
+    
+}
