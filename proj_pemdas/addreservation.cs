@@ -6,13 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using System.Collections;
+using System.ComponentModel.Design;
 
 
 namespace proj_pemdas
 {
     internal class addreservation
     {
-        private string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\tsconfig1.json";
+        private string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
       public void submenu()
         {
             Program apalah = new Program();
@@ -23,28 +24,34 @@ namespace proj_pemdas
         public void GetUserDetails()
         {
             //file data.json di ada di folder bin/debug/net5.0/data.json
-            var json = File.ReadAllText("E:\\MMS\\kuliah\\proj_pemdas\\proj_pemdas\\data.json");
+            var json = File.ReadAllText(jsonFile);
             try
             {
                 var jObject = JObject.Parse(json);
                 //JArray a = JArray.Parse(json);
-                Console.WriteLine("NO\tnama\t\tNIK\t\tNO HP\t\tDATE IN");
-                Console.WriteLine("+-------------------------------------------------------------+");
-                for (int i = 0; i <= 4; i++)
+                Console.WriteLine("ID NO\tKELAS\t\tNAMA\t\tNIK\t\tNO HP\t\tDATE IN");
+                Console.WriteLine("+---------------------------------------------------------------------------------+");
+                for (int i = 0; i <= 2; i++)
                 {
                     JObject experiencesArrary = (JObject)jObject["data"][i];
-                    
-                    if (experiencesArrary["nama"] == null|| experiencesArrary["nik"] != null)
+                    for (int j = 0; j <= 1; j++)
                     {
-                        
-                        Console.WriteLine("{0}\t{1}\t\t{3}\t{4}\t\t{5}",
-                            experiencesArrary["id"],
-                            experiencesArrary["nama"],
-                            experiencesArrary["nik"],
-                            experiencesArrary["nohp"],
-                            experiencesArrary["datein"],
-                            experiencesArrary["time"]
-                            .ToString());
+                        JObject kamar = (JObject)experiencesArrary["kamar"][j];
+                        var k = kamar["pengunjung"];
+                        if (k!= null)
+                        {
+
+                            Console.WriteLine("{0}  {7}\t{1}\t{2}\t\t{3}\t{4}\t{5} {6}",
+                                experiencesArrary["id1"],
+                                experiencesArrary["kelas"],
+                                k["nama"],
+                                k["nik"],
+                                k["nohp"],
+                                k["datein"],
+                                k["time"],
+                                kamar["id"]
+                                .ToString());
+                        }
                     }
                 }
             }
@@ -57,40 +64,77 @@ namespace proj_pemdas
         }
         public void UpdateCompany()
         {
-            string json = File.ReadAllText(jsonFile);
-
-            try
+            var json = File.ReadAllText(jsonFile);
+            var jObject = JObject.Parse(json);
+            JArray experiencesArrary = (JArray)jObject.SelectToken("data");
+            
+            Console.WriteLine("Pilih Kelas\t: ");
+            var kelasid = int.Parse(Console.ReadLine());
+            
+            if (kelasid>0)
             {
-                var jObject = JObject.Parse(json);
-                JArray experiencesArrary = (JArray)jObject["experiences"];
-                Console.Write("Enter Company ID to Update Company : ");
-                var companyId = Convert.ToInt32(Console.ReadLine());
-
-                if (companyId > 0)
+                Console.WriteLine("Pilih Kamar\t: ");
+                var kamarid = int.Parse(Console.ReadLine());
+                
+                if (kamarid > 0)
                 {
-                    Console.Write("Enter new company name : ");
-                    var companyName = Convert.ToString(Console.ReadLine());
-
-                    foreach (var company in experiencesArrary.Where(obj => obj["companyid"].Value<int>() == companyId))
+                    
+                    foreach (var company in experiencesArrary.Where(obj => obj["id1"].Value<int>() == kelasid))
                     {
-                        company["companyname"] = !string.IsNullOrEmpty(companyName) ? companyName : "";
+                        JArray ex = (JArray)company.SelectToken("kamar");
+                        foreach (var pany in ex.Where(obj => obj["id"].Value<int>() == kamarid))
+                        {
+                            
+                            var nama = "aaa";
+                            var newCompanyMember = "{'nama': '" + nama + "'}";
+                            var experienceArrary = jObject.GetValue("data") as JArray;
+                            var newCompany = JObject.Parse(newCompanyMember);
+                            experienceArrary.Add(newCompany);
+                            pany["pengunjung"] = experienceArrary;
+                            string newJsonResult = Newtonsoft.Json.JsonConvert.SerializeObject(pany, Newtonsoft.Json.Formatting.Indented);
+                            File.WriteAllText(jsonFile, newJsonResult);
+                            /*if (ep != null)
+                            {
+                                
+                               
+                            }
+                            else
+                            {
+                                Console.WriteLine("!!Kamar sudah terisi!!");
+                            }*/
+                        }
                     }
-
-                    jObject["experiences"] = experiencesArrary;
-                    string output = Newtonsoft.Json.JsonConvert.SerializeObject(jObject, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(jsonFile, output);
                 }
                 else
                 {
-                    Console.Write("Invalid Company ID, Try Again!");
-                    UpdateCompany();
+                    Console.WriteLine("kamar yang anda pilihh tidak ada");
                 }
-            }
-            catch (Exception ex)
-            {
 
-                Console.WriteLine("Update Error : " + ex.Message.ToString());
             }
+            else
+            {
+                Console.WriteLine("kelas yang anda pilihh tidak ada");
+            }
+
+            /*var newCompanyMember = "{ 'companyid': " + companyId + ",  'companyname': '" + companyName + "'}";  
+            try  
+            {  
+                var json = File.ReadAllText(jsonFile);
+                var jsonObj = JObject.Parse(json);
+                var experienceArrary = jsonObj.GetValue("experiences") as JArray;
+                var newCompany = JObject.Parse(newCompanyMember);
+                experienceArrary.Add(newCompany);  
+  
+                jsonObj["experiences"] = experienceArrary;  
+                string newJsonResult = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObj,
+                                       Newtonsoft.Json.Formatting.Indented);
+                File.WriteAllText(jsonFile, newJsonResult);  
+            }  
+            catch (Exception ex)  
+            {  
+                Console.WriteLine("Error : " + ex.Message.ToString());  
+            } */
+            
         }
 
     }   
