@@ -13,10 +13,10 @@ namespace proj_pemdas
 {
     internal class addreservation
     {
-        private string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
+        private string jsonFile = @"E:\Edgar\Kuliah\Pemdas\Proyek Akhir\proj_pemdas\data.json";
       public void submenu()
         {
-            Program apalah = new Program();
+            @class apalah = new @class();
             apalah.title();
             addreservation data = new addreservation();
             data.GetUserDetails();
@@ -67,7 +67,7 @@ namespace proj_pemdas
             var json = File.ReadAllText(jsonFile);
             var jObject = JObject.Parse(json);
             JArray experiencesArrary = (JArray)jObject.SelectToken("data");
-            
+            Console.WriteLine("+---------------------------------------------------------------------------------+");
             Console.WriteLine("Pilih Kelas\t: ");
             var kelasid = int.Parse(Console.ReadLine());
             

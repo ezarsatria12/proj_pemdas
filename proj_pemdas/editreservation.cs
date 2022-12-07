@@ -1,86 +1,94 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
+using System.Collections;
+using System.ComponentModel.Design;
 
 namespace proj_pemdas
 {
+    //menu 2
+
     internal class editreservation
     {
-        public void coba1()
-        {
-            editreservation ba = new editreservation();
-            ba.submenu();
-            ba.subsecond();
-        }
-        public void coba2()
-        {
-            editreservation ba = new editreservation();
-            ba.submenu();
-            ba.subwrong();
-            ba.subsecond();
-            
-        }
         public void submenu()
         {
-            Console.WriteLine("####################");
-            Console.WriteLine("# ini edit reservasi #");
-            Console.WriteLine("#####################");
-            Console.WriteLine("");
-            Console.WriteLine("1.Edit Reservasi Data");
-            Console.WriteLine("2.Cancel Reservasi Data");
-            editreservation asd = new editreservation();
-        
-            
+            //Panggil Method dari Class Program
+            @class call = new @class();
+            onlyjson show = new onlyjson();
+            editreservation lanjut = new editreservation();
+            call.setup();
+            call.title();
+            show.GetUserDetails();
+            lanjut.submenuedit();
+            lanjut.pilihsubmenuedit();
         }
-        public void subwrong()
+        public void submenuedit()
         {
-            
+            Console.WriteLine("+---------------------------------------------------------------+");
+            Console.WriteLine("Menu\t: ");
             Console.WriteLine("");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("ERROR : Input yang anda masukan salah");
-            Console.ResetColor();
-            
-
+            Console.WriteLine("\t1.Edit Reservation");
+            Console.WriteLine("\t2.Delete Reservation");
+            Console.WriteLine("\t--------------------");
+            Console.WriteLine("\tBack to main menu (y)");
+            Console.WriteLine("+---------------------------------------------------------------+");
         }
-        public void subsecond()
+        public void pilihsubmenuedit()
         {
-            int sub;
-            submenu sub1 = new submenu();
-
+            editreservation edit = new editreservation();
             Console.WriteLine("");
             Console.Write("Pilih Menu : ");
-            sub = int.Parse(Console.ReadLine());
-            sub1.subswitch(sub);
+            Console.ForegroundColor = ConsoleColor.Green;
+            string pilihan = (Console.ReadLine());
+            Console.ResetColor();
+            Console.WriteLine("");
+            edit.switchedit(pilihan);
         }
-
-    }
-    class submenu
-    {
-        editreservationdata edit = new editreservationdata();
-        cancelreservationdata cancel = new cancelreservationdata();
-        editreservation wrong = new editreservation();
-        
-        public void subswitch(int sub)
+        public void switchedit(string x)
         {
-            switch(sub)
+            editreservation lanjut = new editreservation();
+            @class call = new @class();
+            onlyjson show = new onlyjson();
+            switch (x)
             {
-                case 1:
-                    Console.Clear();
-                    edit.sub2();
+                case "1":
+                    lanjut.editreservasi();
                     break;
-                case 2:
+                case "2":
+                    lanjut.deletereservasi();
+                    break;
+                case "y":
                     Console.Clear();
-                    cancel.sub2();
+                    call.backmainmenu();
                     break;
                 default:
                     Console.Clear();
-                    wrong.coba2();
+                    call.title();
+                    show.GetUserDetails();
+                    lanjut.submenuedit();
+                    call.wrong();
+                    lanjut.pilihsubmenuedit();
                     break;
-
             }
-
         }
+        public void editreservasi()
+        {
+            Console.WriteLine("Edit Reservasi");
+            Console.WriteLine("-------------------");
+            Console.WriteLine("Pilih Nomor Reservasi : ");
+            int reservasi = int.Parse(Console.ReadLine());
+        }
+        public void deletereservasi()
+        {
+            Console.WriteLine("Delete Reservasi");
+            Console.WriteLine("-------------------");
+            Console.WriteLine("Pilih Nomor Reservasi : ");
+            int reservasi = int.Parse(Console.ReadLine());
+        }
+        
     }
 }
