@@ -10,51 +10,55 @@ namespace proj_pemdas
 
     internal class Program
     {
-        public void title()
-        {
-            //title
-            Console.WriteLine("+-------------------------------+");
-            Console.WriteLine("|\tHOTEL RESERVATION\t|");
-            Console.WriteLine("+-------------------------------+");
-        }
+        
         static void Main(string[] args)
         {
             //setup
             Console.SetWindowSize(120, 40);
-            Program apalah = new Program();
-
-            apalah.title();
-
+            Program menuawal = new Program();
+            @class layout = new @class();
+            layout.setup();
+            layout.title();
+            menuawal.mainmenu();
+            menuawal.second();
+        }
+        
+        public void mainmenu()
+        {
             //mainmenu
+            Console.WriteLine("+---------------------------------------------------------------+");
+            Console.WriteLine("MAIN MENU : ");
             Console.WriteLine("");
-            Console.WriteLine("MAIN MENU :");
+            Console.WriteLine("\t1. Add Reservation \t| 4. Check Out");
+            Console.WriteLine("\t2. Edit Reservation \t| 5. Exit");
+            Console.WriteLine("\t3. Show Data");
             Console.WriteLine("");
-            Console.WriteLine("1. add reservation \t| 3. show data");
-            Console.WriteLine("2. edit reservation \t| 4. check out");
+            Console.WriteLine("+---------------------------------------------------------------+");
             //Console.WriteLine("======================================");
-            apalah.second();
-
         }
         public void second()
         {
-            int men;
+            int menuselect;
             menu chose = new menu();
-
             Console.WriteLine("");
             Console.Write("Pilih Menu : ");
-            men = int.Parse(Console.ReadLine());
+            Console.ForegroundColor = ConsoleColor.Green;
+            menuselect = int.Parse(Console.ReadLine());
+            Console.ResetColor();
             Console.WriteLine("");
-            chose.Apph(men);
+            chose.pilih(menuselect);
         }
     }
+    
     class menu
     {
         addreservation add= new addreservation();
         editreservation edit = new editreservation();
         showdata show = new showdata();
-        deletereservation delete = new deletereservation();
-        Program back = new Program();
-        public void Apph(int x)
+        checkout delete = new checkout();
+        @class back = new @class();
+        Program turn = new Program();
+        public void pilih(int x)
         {
             switch(x)
             {
@@ -74,11 +78,15 @@ namespace proj_pemdas
                     Console.Clear();
                     delete.submenu();
                     break;
+                case 5:
+                    Environment.ExitCode = -1;
+                    break;
                 default:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("ERROR : Input yang anda masukan tidak tersedia");
-                    Console.ResetColor();
-                    back.second();
+                    Console.Clear();
+                    back.title();
+                    turn.mainmenu();
+                    back.wrong();
+                    turn.second();
                     break;
 
             }
