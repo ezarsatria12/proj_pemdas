@@ -45,7 +45,7 @@ namespace proj_pemdas
     class onlyjson
     {
         //tiap pindah device ganti path oakwoakwokaw
-        public string jsonFile = @"E:\Edgar\Kuliah\Pemdas\Proyek Akhir\proj_pemdas\data.json";
+        public string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
         public void submenueditdata()
         {
 

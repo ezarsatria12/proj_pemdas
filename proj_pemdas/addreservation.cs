@@ -13,7 +13,7 @@ namespace proj_pemdas
 {
     internal class addreservation
     {
-        private string jsonFile = @"E:\Edgar\Kuliah\Pemdas\Proyek Akhir\proj_pemdas\data.json";
+        private string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
       public void submenu()
         {
             @class apalah = new @class();
