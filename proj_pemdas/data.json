@@ -1,96 +1,94 @@
 {
-    "compilerOptions": {
-        "noImplicitAny": false,
-        "noEmitOnError": true,
-        "removeComments": false,
-        "sourceMap": true,
-        "target": "es5"
-    },
-    "exclude": [
-        "node_modules",
-        "wwwroot"
-    ],
-    "bb": [
-
-    ],
-    "data": [
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5"
+  },
+  "exclude": [
+    "node_modules",
+    "wwwroot"
+  ],
+  "bb": [],
+  "data": [
+    {
+      "id1": 1,
+      "kelas": "Standard",
+      "kamar": [
         {
-            "id1": 1,
-            "kelas": "Standard",
-            "kamar": [
-                {
-                    "id": 1,
-                    "pengunjung": {
-                        "nama": "ezar",
-                        "nik": 123456789,
-                        "nohp": 123456789,
-                        "datein": 123456,
-                        "time": "12:00"
-
-                    }
-                },
-                {
-                    "id": 2,
-                    "pengunjung": {
-                    }
-                }
-            ]
+          "id": 1,
+          "pengunjung": {
+            "nama": "ezar",
+            "nik": 123456789,
+            "nohp": 123456789,
+            "datein": 123456,
+            "time": "12:00"
+          }
         },
         {
-            "id1": 2,
-            "kelas": "Superior",
-            "kamar": [
-                {
-                    "id": 3,
-                    "pengunjung": {
-                        "nama": "sapalah",
-                        "nik": 123456789,
-                        "nohp": 123456789,
-                        "datein": 123456,
-                        "time": "12:00"
-
-                    }
-                },
-                {
-                    "id": 4,
-                    "pengunjung": {
-                        "nama": "gtwwww",
-                        "nik": 13546879,
-                        "nohp": 5648521469,
-                        "datein": 12456,
-                        "time": "18:22"
-
-                    }
-                }
-            ]
-        },
-        {
-            "id1": 3,
-            "kelas": "Deluxe\t",
-            "kamar": [
-                {
-                    "id": 5,
-                    "pengunjung": {
-                        "nama": "sapaaaa",
-                        "nik": 123456789,
-                        "nohp": 123456789,
-                        "datein": 123456,
-                        "time": "12:00"
-
-                    }
-                },
-                {
-                    "id": 6,
-                    "pengunjung": {
-                        "nama": "mbuh",
-                        "nik": 13546879,
-                        "nohp": 5648521469,
-                        "datein": 12456,
-                        "time": "18:22"
-
-                    }
-                }
-            ]
+          "id": 2,
+          "pengunjung": {
+            "nama": "1234567",
+            "nik": "123456789012345",
+            "nohp": "123456789012245",
+            "datein": "08/12/22",
+            "time": "09:50"
+          }
         }
-    ]
+      ]
+    },
+    {
+      "id1": 2,
+      "kelas": "Superior",
+      "kamar": [
+        {
+          "id": 3,
+          "pengunjung": {
+            "nama": "sapalah",
+            "nik": 123456789,
+            "nohp": 123456789,
+            "datein": 123456,
+            "time": "12:00"
+          }
+        },
+        {
+          "id": 4,
+          "pengunjung": {
+            "nama": "gtwwww",
+            "nik": 13546879,
+            "nohp": 5648521469,
+            "datein": 12456,
+            "time": "18:22"
+          }
+        }
+      ]
+    },
+    {
+      "id1": 3,
+      "kelas": "Deluxe\t",
+      "kamar": [
+        {
+          "id": 5,
+          "pengunjung": {
+            "nama": "sapaaaa",
+            "nik": 123456789,
+            "nohp": 123456789,
+            "datein": 123456,
+            "time": "12:00"
+          }
+        },
+        {
+          "id": 6,
+          "pengunjung": {
+            "nama": "mbuh",
+            "nik": 13546879,
+            "nohp": 5648521469,
+            "datein": 12456,
+            "time": "18:22"
+          }
+        }
+      ]
+    }
+  ]
 }

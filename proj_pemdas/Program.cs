@@ -13,8 +13,10 @@ namespace proj_pemdas
         
         static void Main(string[] args)
         {
+            /*Progra b = new Progra();
+            b.aa();*/
             //setup
-            Console.SetWindowSize(120, 40);
+           Console.SetWindowSize(120, 40);
             Program menuawal = new Program();
             @class layout = new @class();
             layout.setup();
@@ -34,7 +36,9 @@ namespace proj_pemdas
             Console.WriteLine("\t3. Show Data");
             Console.WriteLine("");
             Console.WriteLine("+---------------------------------------------------------------+");
-            //Console.WriteLine("======================================");
+            var dateTime = DateTime.Now;
+            Console.WriteLine(dateTime.ToString("dd/MM/yy"));
+            Console.WriteLine(dateTime.ToString("hh:mm"));
         }
         public void second()
         {

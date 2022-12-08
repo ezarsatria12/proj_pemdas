@@ -19,16 +19,12 @@
   },
   "experiences": [
     {
-      "companyid": 89,
-      "companyname": "null"
+      "companyid": 32,
+      "companyname": "qq"
     },
     {
-      "companyid": 22,
-      "companyname": "Hello World LTD"
-    },
-    {
-      "companyid": 1,
-      "companyname": "apa"
+      "companyid": 12,
+      "companyname": "qwe"
     }
   ],
   "phoneNumber": 9988664422,
