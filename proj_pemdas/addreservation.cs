@@ -8,8 +8,6 @@ using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.ComponentModel.Design;
 
-
-
 namespace proj_pemdas
 {
     internal class addreservation

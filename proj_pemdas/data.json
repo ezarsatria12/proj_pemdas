@@ -10,30 +10,24 @@
     "node_modules",
     "wwwroot"
   ],
-  "bb": [],
   "data": [
     {
       "id1": 1,
       "kelas": "Standard",
+      "harga": 500000,
       "kamar": [
         {
           "id": 1,
-          "pengunjung": {
-            "nama": "ezar",
-            "nik": 123456789,
-            "nohp": 123456789,
-            "datein": 123456,
-            "time": "12:00"
-          }
+          "pengunjung": {}
         },
         {
           "id": 2,
           "pengunjung": {
-            "nama": "1234567",
-            "nik": "123456789012345",
-            "nohp": "123456789012245",
-            "datein": "08/12/22",
-            "time": "09:50"
+            "nama": "ezar",
+            "nik": "854727",
+            "nohp": "58535874",
+            "datein": "09/12/22",
+            "time": "03:01"
           }
         }
       ]
@@ -41,6 +35,7 @@
     {
       "id1": 2,
       "kelas": "Superior",
+      "harga": 700000,
       "kamar": [
         {
           "id": 3,
@@ -66,7 +61,8 @@
     },
     {
       "id1": 3,
-      "kelas": "Deluxe\t",
+      "kelas": "Deluxe",
+      "harga": 900000,
       "kamar": [
         {
           "id": 5,

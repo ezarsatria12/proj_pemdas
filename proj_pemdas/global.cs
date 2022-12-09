@@ -67,7 +67,7 @@ namespace proj_pemdas
             {
                 var jObject = JObject.Parse(json);
                 //JArray a = JArray.Parse(json);
-                Console.WriteLine("ID NO\tKELAS\t\tNAMA\t\tNIK\t\tNO HP\t\tDATE IN");
+                Console.WriteLine("ID KELAS\tNO NAMA\t\tNIK\t\tNO HP\t\tDATE IN");
                 Console.WriteLine("+---------------------------------------------------------------------------------+");
                 for (int i = 0; i <= 2; i++)
                 {
@@ -79,7 +79,7 @@ namespace proj_pemdas
                         if (k != null)
                         {
 
-                            Console.WriteLine("{0}  {7}\t{1}\t{2}\t\t{3}\t{4}\t{5} {6}",
+                            Console.WriteLine("{0}  {1}\t{7}  {2}\t\t{3}\t{4}\t{5} {6}",
                                 experiencesArrary["id1"],
                                 experiencesArrary["kelas"],
                                 k["nama"],

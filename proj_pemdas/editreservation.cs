@@ -14,6 +14,7 @@ namespace proj_pemdas
 
     internal class editreservation
     {
+        private string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
         public void submenu()
         {
             //Panggil Method dari Class Program
@@ -89,6 +90,56 @@ namespace proj_pemdas
             Console.WriteLine("Pilih Nomor Reservasi : ");
             int reservasi = int.Parse(Console.ReadLine());
         }
-        
+        public void DeleteCompany()
+        {
+            var json = File.ReadAllText(jsonFile);
+            try
+            {
+                var jObject = JObject.Parse(json);
+                JArray experiencesArrary = (JArray)jObject.SelectToken("data");
+                Console.WriteLine("+---------------------------------------------------------------------------------+");
+                Console.WriteLine("Pilih Kelas\t: ");
+                var kelasid = int.Parse(Console.ReadLine());
+
+                if (kelasid > 0)
+                {
+                    Console.WriteLine("Pilih Kamar\t: ");
+                    var kamarid = int.Parse(Console.ReadLine());
+
+                    if (kamarid > 0)
+                    {
+
+                        foreach (var company in experiencesArrary.Where(obj => obj["id1"].Value<int>() == kelasid))
+                        {
+                            JArray ex = (JArray)company.SelectToken("kamar");
+                            foreach (var pany in ex.Where(obj => obj["id"].Value<int>() == kamarid))
+                            {
+                                
+                               
+                                
+                                string output = Newtonsoft.Json.JsonConvert.SerializeObject(jObject, Newtonsoft.Json.Formatting.Indented);
+                                File.WriteAllText(jsonFile, output);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("kamar yang anda pilihh tidak ada");
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("kelas yang anda pilihh tidak ada");
+                }
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

@@ -27,9 +27,7 @@ namespace proj_pemdas
             checkout lanjut = new checkout();
             Console.WriteLine("-------------------------");
             Console.WriteLine("Checkout");
-            Console.WriteLine("Reservation ID: ");
-            Console.WriteLine("");
-            int resid = int.Parse(Console.ReadLine());
+            
             
         }
         public void DeleteCompany()
@@ -58,13 +56,13 @@ namespace proj_pemdas
                             {
                                 var companyName = string.Empty;
 
-                                JObject j = (JObject)pany["pengunjung"];
-                                //var j = JObject.Parse(pany);
-
-                                
-
-                                ex.Remove(j);
-
+                                JObject j = (JObject)pany;
+                                var exp = j.GetValue("pengunjung") as JObject;
+                                exp.Remove("nama");
+                                exp.Remove("nik");
+                                exp.Remove("nohp");
+                                exp.Remove("datein");
+                                exp.Remove("time");
                                 string output = Newtonsoft.Json.JsonConvert.SerializeObject(jObject, Newtonsoft.Json.Formatting.Indented);
                                 File.WriteAllText(jsonFile, output);
                             }
@@ -81,21 +79,7 @@ namespace proj_pemdas
                     Console.WriteLine("kelas yang anda pilihh tidak ada");
                 }
 
-                /*if (companyId > 0)
-                {
-                    var companyName = string.Empty;
-                    var companyToDeleted = experiencesArrary.FirstOrDefault(obj => obj["companyid"].Value<int>() == companyId);
-
-                    experiencesArrary.Remove(companyToDeleted);
-
-                    string output = Newtonsoft.Json.JsonConvert.SerializeObject(jObject, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(jsonFile, output);
-                }
-                else
-                {
-                    Console.Write("Invalid Company ID, Try Again!");
-                    UpdateCompany();
-                }*/
+                
             }
             catch (Exception)
             {
