@@ -10,7 +10,7 @@ namespace proj_pemdas
 {
     internal class Progra
     {
-        private string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\tsconfig1.json";
+        private string jsonFile = @"E:\Edgar\Kuliah\Pemdas\Proyek Akhir\proj_pemdas\tsconfig1.json";
         private void AddCompany()
         {
             Console.WriteLine("Enter Company ID : ");

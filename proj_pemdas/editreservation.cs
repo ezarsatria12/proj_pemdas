@@ -1,12 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.IO;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
-using System.Collections;
-using System.ComponentModel.Design;
 
 namespace proj_pemdas
 {
@@ -14,7 +9,39 @@ namespace proj_pemdas
 
     internal class editreservation
     {
-        private string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
+        private string jsonFile = @"E:\Edgar\Kuliah\Pemdas\Proyek Akhir\proj_pemdas\data.json";
+        public void back()
+        {
+
+            @class call = new @class();
+            onlyjson show = new onlyjson();
+            editreservation lanjut = new editreservation();
+            lanjut.submenu();
+            Console.WriteLine("+---------------------------------------------------------------------------------+");
+            Console.WriteLine("");
+            Console.WriteLine("1.TKembali");
+            Console.WriteLine("2.Kembali ke mainmenu");
+            string select = Console.ReadLine();
+            switch (select)
+            {
+                case "1":
+                    Console.Clear();
+                    lanjut.submenu();
+                    break;
+                case "2":
+                    Console.Clear();
+                    call.backmainmenu();
+                    break;
+
+                default:
+                    Console.Clear();
+                    call.title();
+                    show.GetUserDetails();
+                    call.wrong();
+                    lanjut.back();
+                    break;
+            }
+        }
         public void submenu()
         {
             //Panggil Method dari Class Program
@@ -29,14 +56,13 @@ namespace proj_pemdas
         }
         public void submenuedit()
         {
-            Console.WriteLine("+---------------------------------------------------------------+");
+            Console.WriteLine("+---------------------------------------------------------------------------------+");
             Console.WriteLine("Menu\t: ");
             Console.WriteLine("");
             Console.WriteLine("\t1.Edit Reservation");
-            Console.WriteLine("\t2.Delete Reservation");
             Console.WriteLine("\t--------------------");
-            Console.WriteLine("\tBack to main menu (y)");
-            Console.WriteLine("+---------------------------------------------------------------+");
+            Console.WriteLine("\t2.Main menu");
+            Console.WriteLine("+---------------------------------------------------------------------------------+");
         }
         public void pilihsubmenuedit()
         {
@@ -60,9 +86,6 @@ namespace proj_pemdas
                     lanjut.editreservasi();
                     break;
                 case "2":
-                    lanjut.deletereservasi();
-                    break;
-                case "y":
                     Console.Clear();
                     call.backmainmenu();
                     break;
@@ -93,6 +116,9 @@ namespace proj_pemdas
         }
         public void DeleteCompany()
         {
+            onlyjson show = new onlyjson();
+            @class call = new @class();
+            editreservation lanjut = new editreservation();
             var json = File.ReadAllText(jsonFile);
             try
             {
@@ -119,10 +145,11 @@ namespace proj_pemdas
 
                                 if (a != 0)
                                 {
+
                                     JObject j = (JObject)pany;
                                     Console.WriteLine("1. nama 2.nik 3.no hp");
                                     Console.WriteLine("PILIH : ");
-                                    int pilihedit=int.Parse(Console.ReadLine());
+                                    int pilihedit = int.Parse(Console.ReadLine());
                                     var exp = j.GetValue("pengunjung") as JObject;
                                     switch (pilihedit)
                                     {
@@ -147,6 +174,7 @@ namespace proj_pemdas
                                     j["pengunjung"] = exp;
                                     string newJsonResult = Newtonsoft.Json.JsonConvert.SerializeObject(jObject, Newtonsoft.Json.Formatting.Indented);
                                     File.WriteAllText(jsonFile, newJsonResult);
+                                    lanjut.kembali1();
                                 }
                                 else
                                 {
@@ -154,8 +182,6 @@ namespace proj_pemdas
                                     Console.WriteLine("!!Kamar sudah terisi!!");
                                     Console.ResetColor();
                                 }
-                               
-                                
                             }
                         }
                     }
@@ -169,13 +195,32 @@ namespace proj_pemdas
                 {
                     Console.WriteLine("kelas yang anda pilihh tidak ada");
                 }
-
-
             }
             catch (Exception)
             {
-
                 throw;
+            }
+        }
+        public void kembali1()
+        {
+            onlyjson show = new onlyjson();
+            @class call = new @class();
+            editreservation lanjut = new editreservation();
+            Console.WriteLine("1.Kembali");
+            int kembali = int.Parse(Console.ReadLine());
+            switch (kembali)
+            {
+                case 1:
+                    Console.Clear();
+                    call.title();
+                    show.GetUserDetails();
+                    call.saved();
+                    lanjut.submenuedit();
+                    break;
+                default:
+                    call.wrong();
+                    lanjut.kembali1();
+                    break;
             }
         }
     }
