@@ -1,17 +1,19 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
-using System.Collections;
-using System.ComponentModel.Design;
 
 namespace proj_pemdas
 {
     internal class @class //Class Khusus menyimpan Method
     {
+        public void saved()
+        {
+            Console.WriteLine("");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Reservation Changes Saved");
+            Console.WriteLine("");
+            Console.ResetColor();
+        }
         //setup
         public void setup()
         {
@@ -29,6 +31,7 @@ namespace proj_pemdas
             Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("ERROR : Input yang anda masukan tidak tersedia");
+            Console.WriteLine("");
             Console.ResetColor();
         }
         public void backmainmenu()
@@ -45,7 +48,7 @@ namespace proj_pemdas
     class onlyjson
     {
         //tiap pindah device ganti path oakwoakwokaw
-        public string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
+        public string jsonFile = @"E:\Edgar\Kuliah\Pemdas\Proyek Akhir\proj_pemdas\data.json";
         public void submenueditdata()
         {
 
@@ -78,8 +81,7 @@ namespace proj_pemdas
                         var k = kamar["pengunjung"];
                         if (k != null)
                         {
-
-                            Console.WriteLine("{0}  {1}\t{7}  {2}\t\t{3}\t{4}\t{5} {6}",
+                            Console.WriteLine("{0}  {1}\t{7}  {2}\t\t{3}\t\t{4}\t\t{5} {6}",
                                 experiencesArrary["id1"],
                                 experiencesArrary["kelas"],
                                 k["nama"],
@@ -92,12 +94,12 @@ namespace proj_pemdas
                         }
                     }
                 }
+                Console.WriteLine("+---------------------------------------------------------------------------------+");
             }
             catch (Exception)
             {
                 throw;
             }
-
         }
     }
 }

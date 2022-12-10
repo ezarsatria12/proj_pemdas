@@ -22,13 +22,7 @@
         },
         {
           "id": 2,
-          "pengunjung": {
-            "nama": "aa",
-            "nik": "854727",
-            "nohp": "58535874",
-            "datein": "09/12/22",
-            "time": "03:01"
-          }
+          "pengunjung": {}
         }
       ]
     },
@@ -39,22 +33,16 @@
       "kamar": [
         {
           "id": 3,
-          "pengunjung": {
-            "nama": "sapalah",
-            "nik": 123456789,
-            "nohp": 123456789,
-            "datein": 123456,
-            "time": "12:00"
-          }
+          "pengunjung": {}
         },
         {
           "id": 4,
           "pengunjung": {
-            "nama": "gtwwww",
-            "nik": 13546879,
-            "nohp": 5648521469,
-            "datein": 12456,
-            "time": "18:22"
+            "nama": "12321",
+            "nik": "123213213213",
+            "nohp": "121313211",
+            "datein": "10/12/22",
+            "time": "07:15"
           }
         }
       ]
@@ -67,21 +55,21 @@
         {
           "id": 5,
           "pengunjung": {
-            "nama": "sapaaaa",
-            "nik": 123456789,
-            "nohp": 123456789,
-            "datein": 123456,
-            "time": "12:00"
+            "nama": "123",
+            "nik": "123312321",
+            "nohp": "0895421996608",
+            "datein": "10/12/22",
+            "time": "06:55"
           }
         },
         {
           "id": 6,
           "pengunjung": {
-            "nama": "mbuh",
-            "nik": 13546879,
-            "nohp": 5648521469,
-            "datein": 12456,
-            "time": "18:22"
+            "nama": "132",
+            "nik": "321",
+            "nohp": "123",
+            "datein": "10/12/22",
+            "time": "07:39"
           }
         }
       ]

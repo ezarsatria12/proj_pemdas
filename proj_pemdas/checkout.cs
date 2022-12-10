@@ -11,7 +11,8 @@ namespace proj_pemdas
 {
     internal class checkout
     {
-        private string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
+        // private string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
+        private string jsonFile = @"E:\Edgar\Kuliah\Pemdas\Proyek Akhir\proj_pemdas\data.json";
         public void submenu()
         {
             @class call = new @class();
@@ -22,14 +23,6 @@ namespace proj_pemdas
             show.GetUserDetails();//memanggil data json di data.json
             lanjut.checkoutback();
         }
-        public void checkoutmenu()
-        {
-            checkout lanjut = new checkout();
-            Console.WriteLine("-------------------------");
-            Console.WriteLine("Checkout");
-            
-            
-        }
         public void DeleteCompany()
         {
             var json = File.ReadAllText(jsonFile);
@@ -37,7 +30,6 @@ namespace proj_pemdas
             {
                 var jObject = JObject.Parse(json);
                 JArray experiencesArrary = (JArray)jObject.SelectToken("data");
-                Console.WriteLine("+---------------------------------------------------------------------------------+");
                 Console.WriteLine("Pilih Kelas\t: ");
                 var kelasid = int.Parse(Console.ReadLine());
 
@@ -65,6 +57,18 @@ namespace proj_pemdas
                                 exp.Remove("time");
                                 string output = Newtonsoft.Json.JsonConvert.SerializeObject(jObject, Newtonsoft.Json.Formatting.Indented);
                                 File.WriteAllText(jsonFile, output);
+                                checkout lanjut = new checkout();
+                                Console.Clear();
+                                @class call = new @class();
+                                onlyjson show = new onlyjson();
+                                addreservation add = new addreservation();
+                                checkout checkout = new checkout();
+                                call.setup();
+                                call.title();
+                                show.GetUserDetails();
+                                call.saved();
+                                lanjut.kembali();
+
                             }
                         }
                     }
@@ -124,13 +128,55 @@ namespace proj_pemdas
                 Console.WriteLine("Update Error : " + ex.Message.ToString());
             }
         }
+        public void kembali()
+        {
+            //kembali
+            @class call = new @class();
+            onlyjson show = new onlyjson();
+            addreservation add = new addreservation();
+            checkout checkout = new checkout();
+            checkout lanjut = new checkout();
+            Console.WriteLine("+---------------------------------------------------------------------------------+");
+            Console.WriteLine("");
+            Console.WriteLine("Menu");
+            Console.WriteLine("1.Kembali");
+            Console.WriteLine("2.Kembali ke mainmenu");
+            string select = Console.ReadLine();
+            switch (select)
+            {
+                case "1":
+                    Console.Clear();
+                    call.setup();
+                    call.title();
+                    show.GetUserDetails();
+                    lanjut.DeleteCompany();
+                    break;
+                case "2":
+                    Console.Clear();
+                    call.backmainmenu();
+                    break;
+                default:
+                    Console.Clear();
+                    call.setup();
+                    call.title();
+                    show.GetUserDetails();
+
+                    call.wrong();
+                    lanjut.kembali();
+                    break;
+            }
+        }
         public void checkoutback()
         {
+            @class call = new @class();
+            //
+            Console.WriteLine("Menu: ");
             Console.WriteLine("");
-            Console.WriteLine("1.Checkout: ");
-            Console.WriteLine("Kembali ke main menu (y)");
+            Console.WriteLine("\t1. Checkout ");
+            Console.WriteLine("\t2. main menu");
             string back = (Console.ReadLine());
             checkout chose = new checkout();
+            Console.WriteLine("+---------------------------------------------------------------------------------+");
             chose.switchback(back);
         }
         public void switchback(string x)
@@ -143,7 +189,7 @@ namespace proj_pemdas
                 case "1":
                     lanjut.DeleteCompany();
                     break;
-                case "y":
+                case "2":
                     Console.Clear();
                     call.backmainmenu();
                     break;
@@ -153,7 +199,9 @@ namespace proj_pemdas
                     call.title();
                     show.GetUserDetails();
                     call.wrong();
-                    lanjut.checkoutmenu();
+                    Console.WriteLine("");
+                    Console.WriteLine("+---------------------------------------------------------------------------------+");
+                    
                     lanjut.checkoutback();
                     break;
             }
