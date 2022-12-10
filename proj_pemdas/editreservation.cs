@@ -80,8 +80,9 @@ namespace proj_pemdas
         {
             Console.WriteLine("Edit Reservasi");
             Console.WriteLine("-------------------");
-            Console.WriteLine("Pilih Nomor Reservasi : ");
-            int reservasi = int.Parse(Console.ReadLine());
+            editreservation lanjut = new editreservation();
+            lanjut.DeleteCompany();
+
         }
         public void deletereservasi()
         {
@@ -114,11 +115,47 @@ namespace proj_pemdas
                             JArray ex = (JArray)company.SelectToken("kamar");
                             foreach (var pany in ex.Where(obj => obj["id"].Value<int>() == kamarid))
                             {
-                                
+                                var a = pany["pengunjung"].Count();
+
+                                if (a != 0)
+                                {
+                                    JObject j = (JObject)pany;
+                                    Console.WriteLine("1. nama 2.nik 3.no hp");
+                                    Console.WriteLine("PILIH : ");
+                                    int pilihedit=int.Parse(Console.ReadLine());
+                                    var exp = j.GetValue("pengunjung") as JObject;
+                                    switch (pilihedit)
+                                    {
+                                        case 1:
+                                            Console.WriteLine("Nama: ");
+                                            string nama = Console.ReadLine();
+                                            exp["nama"] = !string.IsNullOrEmpty(nama) ? nama : "";
+                                            break;
+                                        case 2:
+                                            Console.WriteLine("NIK: ");
+                                            string nik = Console.ReadLine();
+                                            exp["nik"] = !string.IsNullOrEmpty(nik) ? nik : "";
+                                            break;
+                                        case 3:
+                                            Console.WriteLine("No hp: ");
+                                            string nohp = Console.ReadLine();
+                                            exp["nohp"] = !string.IsNullOrEmpty(nohp) ? nohp : "";
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                    j["pengunjung"] = exp;
+                                    string newJsonResult = Newtonsoft.Json.JsonConvert.SerializeObject(jObject, Newtonsoft.Json.Formatting.Indented);
+                                    File.WriteAllText(jsonFile, newJsonResult);
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("!!Kamar sudah terisi!!");
+                                    Console.ResetColor();
+                                }
                                
                                 
-                                string output = Newtonsoft.Json.JsonConvert.SerializeObject(jObject, Newtonsoft.Json.Formatting.Indented);
-                                File.WriteAllText(jsonFile, output);
                             }
                         }
                     }
