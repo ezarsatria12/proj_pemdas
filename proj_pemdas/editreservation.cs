@@ -9,7 +9,7 @@ namespace proj_pemdas
 
     internal class editreservation
     {
-        private string jsonFile = @"E:\Edgar\Kuliah\Pemdas\Proyek Akhir\proj_pemdas\data.json";
+        private string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
         public void back()
         {
 
@@ -104,7 +104,7 @@ namespace proj_pemdas
             Console.WriteLine("Edit Reservasi");
             Console.WriteLine("-------------------");
             editreservation lanjut = new editreservation();
-            lanjut.DeleteCompany();
+            lanjut.edit();
 
         }
         public void deletereservasi()
@@ -114,7 +114,7 @@ namespace proj_pemdas
             Console.WriteLine("Pilih Nomor Reservasi : ");
             int reservasi = int.Parse(Console.ReadLine());
         }
-        public void DeleteCompany()
+        public void edit()
         {
             onlyjson show = new onlyjson();
             @class call = new @class();
@@ -123,7 +123,7 @@ namespace proj_pemdas
             try
             {
                 var jObject = JObject.Parse(json);
-                JArray experiencesArrary = (JArray)jObject.SelectToken("data");
+                JArray dataarray= (JArray)jObject.SelectToken("data");
                 Console.WriteLine("+---------------------------------------------------------------------------------+");
                 Console.WriteLine("Pilih Kelas\t: ");
                 var kelasid = int.Parse(Console.ReadLine());
@@ -136,42 +136,42 @@ namespace proj_pemdas
                     if (kamarid > 0)
                     {
 
-                        foreach (var company in experiencesArrary.Where(obj => obj["id1"].Value<int>() == kelasid))
+                        foreach (var getid in dataarray.Where(obj => obj["id1"].Value<int>() == kelasid))
                         {
-                            JArray ex = (JArray)company.SelectToken("kamar");
-                            foreach (var pany in ex.Where(obj => obj["id"].Value<int>() == kamarid))
+                            JArray kamararray = (JArray)getid.SelectToken("kamar");
+                            foreach (var getkamarid in kamararray.Where(obj => obj["id"].Value<int>() == kamarid))
                             {
-                                var a = pany["pengunjung"].Count();
+                                var pengunjung = getkamarid["pengunjung"].Count();
 
-                                if (a != 0)
+                                if (pengunjung != 0)
                                 {
 
-                                    JObject j = (JObject)pany;
+                                    JObject objpengunjung = (JObject)getkamarid;
                                     Console.WriteLine("1. nama 2.nik 3.no hp");
-                                    Console.WriteLine("PILIH : ");
+                                    Console.Write("PILIH : ");
                                     int pilihedit = int.Parse(Console.ReadLine());
-                                    var exp = j.GetValue("pengunjung") as JObject;
+                                    var datapengunjung = objpengunjung.GetValue("pengunjung") as JObject;
                                     switch (pilihedit)
                                     {
                                         case 1:
-                                            Console.WriteLine("Nama: ");
+                                            Console.Write("Nama: ");
                                             string nama = Console.ReadLine();
-                                            exp["nama"] = !string.IsNullOrEmpty(nama) ? nama : "";
+                                            datapengunjung["nama"] = !string.IsNullOrEmpty(nama) ? nama : "";
                                             break;
                                         case 2:
-                                            Console.WriteLine("NIK: ");
+                                            Console.Write("NIK: ");
                                             string nik = Console.ReadLine();
-                                            exp["nik"] = !string.IsNullOrEmpty(nik) ? nik : "";
+                                            datapengunjung["nik"] = !string.IsNullOrEmpty(nik) ? nik : "";
                                             break;
                                         case 3:
-                                            Console.WriteLine("No hp: ");
+                                            Console.Write("No hp: ");
                                             string nohp = Console.ReadLine();
-                                            exp["nohp"] = !string.IsNullOrEmpty(nohp) ? nohp : "";
+                                            datapengunjung["nohp"] = !string.IsNullOrEmpty(nohp) ? nohp : "";
                                             break;
                                         default:
                                             break;
                                     }
-                                    j["pengunjung"] = exp;
+                                    objpengunjung["pengunjung"] = datapengunjung;
                                     string newJsonResult = Newtonsoft.Json.JsonConvert.SerializeObject(jObject, Newtonsoft.Json.Formatting.Indented);
                                     File.WriteAllText(jsonFile, newJsonResult);
                                     lanjut.kembali1();
@@ -216,6 +216,7 @@ namespace proj_pemdas
                     show.GetUserDetails();
                     call.saved();
                     lanjut.submenuedit();
+                    lanjut.pilihsubmenuedit();
                     break;
                 default:
                     call.wrong();

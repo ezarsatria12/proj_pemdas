@@ -21,7 +21,7 @@ namespace proj_pemdas
         public void showback()
         {
             Console.WriteLine("");
-            Console.WriteLine("Kembali ke main menu (y)");
+            Console.WriteLine("1.Kembali ke main menu");
             string back = (Console.ReadLine());
             showdata chose = new showdata();
             chose.switchback(back);
@@ -34,7 +34,7 @@ namespace proj_pemdas
             showdata lanjut = new showdata();
             switch (x)
             {
-                case "y":
+                case "1":
                     Console.Clear();
                     call.backmainmenu();
                     break;

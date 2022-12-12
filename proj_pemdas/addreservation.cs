@@ -2,12 +2,14 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Xml.Schema;
 
 namespace proj_pemdas
 {
     internal class addreservation
     {
-        private string jsonFile = @"E:\Edgar\Kuliah\Pemdas\Proyek Akhir\proj_pemdas\data.json";
+        //panggil file json
+        private string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
         public void menu()
         {
             Console.WriteLine("Menu\t: ");
@@ -36,7 +38,7 @@ namespace proj_pemdas
             switch (x)
             {
                 case 1:
-                    data.UpdateCompany();
+                    data.add();
                     break;
                 case 2:
                     Console.Clear();
@@ -71,86 +73,62 @@ namespace proj_pemdas
             show.GetUserDetails();
 
         }
-        public void UpdateCompany()
+        public void add()
         {
             addreservation add = new addreservation();
             @class apalah = new @class();
             addreservation data = new addreservation();
             var json = File.ReadAllText(jsonFile);
             var jObject = JObject.Parse(json);
-            JArray experiencesArrary = (JArray)jObject.SelectToken("data");
+            JArray dataarray = (JArray)jObject.SelectToken("data");
             Console.Write("Pilih Kelas(Id)\t: ");
             var kelasid = int.Parse(Console.ReadLine());
-            if (kelasid > 3)
-            {
-                Console.Clear();
-                apalah.title();
-                data.GetUserDetails();
-                add.menu();
-                Console.WriteLine("");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Kelas tidak tersedia");
-                Console.ResetColor();
-                Console.WriteLine("");
-                add.UpdateCompany();
-
-            }
-            if (kelasid > 0)
+            
+            if (kelasid > 0&&kelasid<=3)
             {               
                 Console.Write("Pilih Kamar(No)\t: ");
                 var kamarid = int.Parse(Console.ReadLine());
                 Console.WriteLine(" ");
-                if (kamarid > 6)
-                {
-                    Console.Clear();
-                    apalah.title();
-                    data.GetUserDetails();
-                    add.menu();
-                    Console.WriteLine("");
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Kamar tidak tersedia");
-                    Console.ResetColor();
-                    Console.WriteLine("");
-                    add.UpdateCompany();
-                }
-                if (kamarid > 0)
+                
+                if (kamarid > 0&&kamarid<=6)
                 {
 
-                    foreach (var company in experiencesArrary.Where(obj => obj["id1"].Value<int>() == kelasid))
+                    foreach (var getid in dataarray.Where(obj => obj["id1"].Value<int>() == kelasid))
                     {
-                        JArray ex = (JArray)company.SelectToken("kamar");
-                        foreach (var pany in ex.Where(obj => obj["id"].Value<int>() == kamarid))
+                        JArray kamararray = (JArray)getid.SelectToken("kamar");
+                        JValue harga = (JValue)getid.SelectToken("harga");
+                        
+                        
+                        foreach (var getkamarid in kamararray.Where(obj => obj["id"].Value<int>() == kamarid))
                         {
-                            var a = pany["pengunjung"].Count();
+                            var pengunjung = getkamarid["pengunjung"].Count();
 
-                            if (a == 0)
+                            if (pengunjung == 0)
                             {
-                                Console.WriteLine("Nama: ");
+                                Console.Write("Nama: ");
                                 string nama = Console.ReadLine();
-                                Console.WriteLine("NIK: ");
+                                Console.Write("NIK: ");
                                 string nik = Console.ReadLine();
-                                Console.WriteLine("No hp: ");
+                                Console.Write("No hp: ");
                                 string nohp = Console.ReadLine();
 
-                                JObject j = (JObject)pany;
-                                var exp = j.GetValue("pengunjung") as JObject;
+                                JObject objpengunjung = (JObject)getkamarid;
+                                var datapengunjung = objpengunjung.GetValue("pengunjung") as JObject;
                                 var datetime = DateTime.Now;
-                                exp.Add("nama", nama);
-                                exp.Add("nik", nik);
-                                exp.Add("nohp", nohp);
-                                exp.Add("datein", datetime.ToString("dd/MM/yy"));
-                                exp.Add("time", datetime.ToString("hh:mm"));
+                                datapengunjung.Add("nama", nama);
+                                datapengunjung.Add("nik", nik);
+                                datapengunjung.Add("nohp", nohp);
+                                datapengunjung.Add("datein", datetime.ToString("dd/MM/yy"));
+                                datapengunjung.Add("time", datetime.ToString("hh:mm"));
 
-                                j["pengunjung"] = exp;
+                                objpengunjung["pengunjung"] = datapengunjung;
                                 string newJsonResult = Newtonsoft.Json.JsonConvert.SerializeObject(jObject, Newtonsoft.Json.Formatting.Indented);
                                 File.WriteAllText(jsonFile, newJsonResult);
+                                payment((int)harga);
                                 //Kembali
                                 addreservation back = new addreservation();
                                 @class call = new @class();
                                 onlyjson show = new onlyjson();
-                                Console.Clear();
-                                call.title();
-                                show.GetUserDetails();
                                 call.saved();
                                 back.kembali();
 
@@ -158,9 +136,16 @@ namespace proj_pemdas
                             }
                             else
                             {
+                                Console.Clear();
+                                apalah.title();
+                                data.GetUserDetails();
+                                add.menu();
+                                Console.WriteLine("");
                                 Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("!!Kamar sudah terisi!!");
+                                Console.WriteLine("Kamar tidak tersedia");
                                 Console.ResetColor();
+                                Console.WriteLine("");
+                                add.add();
                             }
                         }
                     }
@@ -172,8 +157,35 @@ namespace proj_pemdas
             }
             else
             {
-                Console.WriteLine("kelas yang anda pilihh tidak ada");
+                Console.Clear();
+                apalah.title();
+                data.GetUserDetails();
+                add.menu();
+                Console.WriteLine("");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Kelas tidak tersedia");
+                Console.ResetColor();
+                Console.WriteLine("");
+                add.add();
             }
+        }
+        public void payment(int harga)
+        {
+            addreservation pay = new addreservation();
+            Console.WriteLine("+---------------------------------------------------------------------------------+");
+            Console.WriteLine("pembayaran\n");
+            Console.WriteLine("Harga : "+harga);
+            Console.Write("uang yang diterima : ");
+            int recive = int.Parse(Console.ReadLine());
+            int total = recive -  harga;
+            if (recive < harga)
+            {
+                Console.WriteLine("Uang anda Kurang!!");
+                pay.payment(harga);
+                
+            }
+            else
+            Console.WriteLine("Kembali Rp "+total+"\n");
         }
         public void kembali()
         {
@@ -185,6 +197,7 @@ namespace proj_pemdas
             Console.WriteLine("");
             Console.WriteLine("1.Tambah reservasi");
             Console.WriteLine("2.Kembali ke mainmenu");
+            Console.Write("Pilih : ");
             string select = Console.ReadLine();
             switch (select)
             {

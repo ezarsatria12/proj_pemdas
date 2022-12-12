@@ -12,7 +12,7 @@ namespace proj_pemdas
     internal class checkout
     {
         // private string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
-        private string jsonFile = @"E:\Edgar\Kuliah\Pemdas\Proyek Akhir\proj_pemdas\data.json";
+        private string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
         public void submenu()
         {
             @class call = new @class();
@@ -23,13 +23,13 @@ namespace proj_pemdas
             show.GetUserDetails();//memanggil data json di data.json
             lanjut.checkoutback();
         }
-        public void DeleteCompany()
+        public void cekout()
         {
             var json = File.ReadAllText(jsonFile);
             try
             {
                 var jObject = JObject.Parse(json);
-                JArray experiencesArrary = (JArray)jObject.SelectToken("data");
+                JArray dataarray = (JArray)jObject.SelectToken("data");
                 Console.WriteLine("Pilih Kelas\t: ");
                 var kelasid = int.Parse(Console.ReadLine());
 
@@ -41,22 +41,24 @@ namespace proj_pemdas
                     if (kamarid > 0)
                     {
 
-                        foreach (var company in experiencesArrary.Where(obj => obj["id1"].Value<int>() == kelasid))
+                        foreach (var getid in dataarray.Where(obj => obj["id1"].Value<int>() == kelasid))
                         {
-                            JArray ex = (JArray)company.SelectToken("kamar");
-                            foreach (var pany in ex.Where(obj => obj["id"].Value<int>() == kamarid))
+                            JArray kamararray = (JArray)getid.SelectToken("kamar");
+                            foreach (var getkamarid in kamararray.Where(obj => obj["id"].Value<int>() == kamarid))
                             {
-                                var companyName = string.Empty;
 
-                                JObject j = (JObject)pany;
-                                var exp = j.GetValue("pengunjung") as JObject;
-                                exp.Remove("nama");
-                                exp.Remove("nik");
-                                exp.Remove("nohp");
-                                exp.Remove("datein");
-                                exp.Remove("time");
+
+                                JObject objpengunjung = (JObject)getkamarid;
+                                var datapengunjung = objpengunjung.GetValue("pengunjung") as JObject;
+                                datapengunjung.Remove("nama");
+                                datapengunjung.Remove("nik");
+                                datapengunjung.Remove("nohp");
+                                datapengunjung.Remove("datein");
+                                datapengunjung.Remove("time");
                                 string output = Newtonsoft.Json.JsonConvert.SerializeObject(jObject, Newtonsoft.Json.Formatting.Indented);
                                 File.WriteAllText(jsonFile, output);
+                                
+                                //back
                                 checkout lanjut = new checkout();
                                 Console.Clear();
                                 @class call = new @class();
@@ -91,43 +93,6 @@ namespace proj_pemdas
                 throw;
             }
         }
-        private void UpdateCompany()
-        {
-            string json = File.ReadAllText(jsonFile);
-
-            try
-            {
-                var jObject = JObject.Parse(json);
-                JArray experiencesArrary = (JArray)jObject["experiences"];
-                Console.Write("Enter Company ID to Update Company : ");
-                var companyId = Convert.ToInt32(Console.ReadLine());
-
-                if (companyId > 0)
-                {
-                    Console.Write("Enter new company name : ");
-                    var companyName = Convert.ToString(Console.ReadLine());
-
-                    foreach (var company in experiencesArrary.Where(obj => obj["companyid"].Value<int>() == companyId))
-                    {
-                        company["companyname"] = !string.IsNullOrEmpty(companyName) ? companyName : "";
-                    }
-
-                    jObject["experiences"] = experiencesArrary;
-                    string output = Newtonsoft.Json.JsonConvert.SerializeObject(jObject, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(jsonFile, output);
-                }
-                else
-                {
-                    Console.Write("Invalid Company ID, Try Again!");
-                    UpdateCompany();
-                }
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine("Update Error : " + ex.Message.ToString());
-            }
-        }
         public void kembali()
         {
             //kembali
@@ -141,6 +106,7 @@ namespace proj_pemdas
             Console.WriteLine("Menu");
             Console.WriteLine("1.Kembali");
             Console.WriteLine("2.Kembali ke mainmenu");
+            Console.WriteLine("+---------------------------------------------------------------------------------+");
             string select = Console.ReadLine();
             switch (select)
             {
@@ -149,7 +115,7 @@ namespace proj_pemdas
                     call.setup();
                     call.title();
                     show.GetUserDetails();
-                    lanjut.DeleteCompany();
+                    lanjut.cekout();
                     break;
                 case "2":
                     Console.Clear();
@@ -184,10 +150,11 @@ namespace proj_pemdas
             @class call = new @class();
             onlyjson show = new onlyjson();
             checkout lanjut = new checkout();
+
             switch (x)
             {
                 case "1":
-                    lanjut.DeleteCompany();
+                    lanjut.cekout();
                     break;
                 case "2":
                     Console.Clear();
@@ -205,6 +172,7 @@ namespace proj_pemdas
                     lanjut.checkoutback();
                     break;
             }
+
         }
     }
 }

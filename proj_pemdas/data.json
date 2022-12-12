@@ -33,7 +33,13 @@
       "kamar": [
         {
           "id": 3,
-          "pengunjung": {}
+          "pengunjung": {
+            "nama": "123",
+            "nik": "123123123",
+            "nohp": "12321321",
+            "datein": "11/12/22",
+            "time": "08:00"
+          }
         },
         {
           "id": 4,
@@ -49,13 +55,13 @@
     },
     {
       "id1": 3,
-      "kelas": "Deluxe",
+      "kelas": "Deluxe\t",
       "harga": 900000,
       "kamar": [
         {
           "id": 5,
           "pengunjung": {
-            "nama": "123",
+            "nama": "1234",
             "nik": "123312321",
             "nohp": "0895421996608",
             "datein": "10/12/22",

@@ -37,8 +37,7 @@ namespace proj_pemdas
             Console.WriteLine("");
             Console.WriteLine("+---------------------------------------------------------------+");
             var dateTime = DateTime.Now;
-            Console.WriteLine(dateTime.ToString("dd/MM/yy"));
-            Console.WriteLine(dateTime.ToString("hh:mm"));
+            Console.WriteLine(dateTime.ToString("dd/MM/yy"));   
         }
         public void second()
         {
