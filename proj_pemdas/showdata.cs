@@ -8,21 +8,26 @@ namespace proj_pemdas
 {
     internal class showdata
     {
-        public void submenu()
+        public void submenu()//method show data
         {
             @class call = new @class();
             onlyjson show = new onlyjson();
             showdata lanjut = new showdata();
-            call.setup();
-            call.title();
-            show.GetUserDetails();
-            lanjut.showback();
+            call.setup();//memanggil method setup
+            call.title();//memanggil method header
+            show.GetUserDetails();//memanggil method tabel data
+            lanjut.showback();//memanggil method menu show data
         }
-        public void showback()
+        public void showback()//method menu show data
         {
             Console.WriteLine("");
             Console.WriteLine("1.Kembali ke main menu");
+            Console.WriteLine("");
+            Console.WriteLine("+---------------------------------------------------------------------------------+");
+            Console.Write("Pilih: ");
+            Console.ForegroundColor= ConsoleColor.Green;
             string back = (Console.ReadLine());
+            Console.ResetColor();
             showdata chose = new showdata();
             chose.switchback(back);
 
@@ -35,16 +40,16 @@ namespace proj_pemdas
             switch (x)
             {
                 case "1":
-                    Console.Clear();
-                    call.backmainmenu();
+                    Console.Clear();//menghapus tampilan
+                    call.backmainmenu();//memanggil method main menu
                     break;
                 default:
-                    Console.Clear();
-                    call.setup();
-                    call.title();
-                    show.GetUserDetails();
-                    call.wrong();
-                    lanjut.showback();
+                    Console.Clear();//menghapus tampilan
+                    call.setup();//memanggil method setup
+                    call.title();//memanggil method header
+                    show.GetUserDetails();//memanggil method tabel data
+                    call.wrong();//memanggil method error
+                    lanjut.showback();//memanggil method tampilkan tabel
                     break;
             }
         }

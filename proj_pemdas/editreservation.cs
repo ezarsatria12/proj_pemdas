@@ -9,8 +9,9 @@ namespace proj_pemdas
 
     internal class editreservation
     {
-        private string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
-        public void back()
+        //private string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
+        private string jsonFile = @"E:\Edgar\Kuliah\Pemdas\Proyek Akhir\proj_pemdas\data.json";
+        public void back()//method menu kembali
         {
 
             @class call = new @class();
@@ -21,7 +22,9 @@ namespace proj_pemdas
             Console.WriteLine("");
             Console.WriteLine("1.TKembali");
             Console.WriteLine("2.Kembali ke mainmenu");
+            Console.ForegroundColor = ConsoleColor.Green;
             string select = Console.ReadLine();
+            Console.ResetColor();
             switch (select)
             {
                 case "1":
@@ -42,7 +45,7 @@ namespace proj_pemdas
                     break;
             }
         }
-        public void submenu()
+        public void submenu()//method tampilan edit reservasi
         {
             //Panggil Method dari Class Program
             @class call = new @class();
@@ -54,20 +57,18 @@ namespace proj_pemdas
             lanjut.submenuedit();
             lanjut.pilihsubmenuedit();
         }
-        public void submenuedit()
+        public void submenuedit()//method menu edit reservasi
         {
             Console.WriteLine("+---------------------------------------------------------------------------------+");
             Console.WriteLine("Menu\t: ");
-            Console.WriteLine("");
             Console.WriteLine("\t1.Edit Reservation");
             Console.WriteLine("\t--------------------");
             Console.WriteLine("\t2.Main menu");
             Console.WriteLine("+---------------------------------------------------------------------------------+");
         }
-        public void pilihsubmenuedit()
+        public void pilihsubmenuedit()//method tampilan pilih menu
         {
             editreservation edit = new editreservation();
-            Console.WriteLine("");
             Console.Write("Pilih Menu : ");
             Console.ForegroundColor = ConsoleColor.Green;
             string pilihan = (Console.ReadLine());
@@ -75,7 +76,7 @@ namespace proj_pemdas
             Console.WriteLine("");
             edit.switchedit(pilihan);
         }
-        public void switchedit(string x)
+        public void switchedit(string x)//method switch
         {
             editreservation lanjut = new editreservation();
             @class call = new @class();
@@ -83,7 +84,7 @@ namespace proj_pemdas
             switch (x)
             {
                 case "1":
-                    lanjut.editreservasi();
+                    lanjut.edit();
                     break;
                 case "2":
                     Console.Clear();
@@ -99,23 +100,9 @@ namespace proj_pemdas
                     break;
             }
         }
-        public void editreservasi()
+        public void edit()//method fungsi edit reservasi
         {
             Console.WriteLine("Edit Reservasi");
-            Console.WriteLine("-------------------");
-            editreservation lanjut = new editreservation();
-            lanjut.edit();
-
-        }
-        public void deletereservasi()
-        {
-            Console.WriteLine("Delete Reservasi");
-            Console.WriteLine("-------------------");
-            Console.WriteLine("Pilih Nomor Reservasi : ");
-            int reservasi = int.Parse(Console.ReadLine());
-        }
-        public void edit()
-        {
             onlyjson show = new onlyjson();
             @class call = new @class();
             editreservation lanjut = new editreservation();
@@ -123,15 +110,19 @@ namespace proj_pemdas
             try
             {
                 var jObject = JObject.Parse(json);
-                JArray dataarray= (JArray)jObject.SelectToken("data");
+                JArray dataarray = (JArray)jObject.SelectToken("data");
                 Console.WriteLine("+---------------------------------------------------------------------------------+");
-                Console.WriteLine("Pilih Kelas\t: ");
+                Console.Write("Pilih Kelas\t: ");
+                Console.ForegroundColor = ConsoleColor.Green;
                 var kelasid = int.Parse(Console.ReadLine());
+                Console.ResetColor();
 
                 if (kelasid > 0)
                 {
-                    Console.WriteLine("Pilih Kamar\t: ");
+                    Console.Write("Pilih Kamar\t: ");
+                    Console.ForegroundColor = ConsoleColor.Green;
                     var kamarid = int.Parse(Console.ReadLine());
+                    Console.ResetColor();
 
                     if (kamarid > 0)
                     {
@@ -141,15 +132,21 @@ namespace proj_pemdas
                             JArray kamararray = (JArray)getid.SelectToken("kamar");
                             foreach (var getkamarid in kamararray.Where(obj => obj["id"].Value<int>() == kamarid))
                             {
+                                Console.ForegroundColor = ConsoleColor.Green;
                                 var pengunjung = getkamarid["pengunjung"].Count();
+                                Console.ResetColor();
 
                                 if (pengunjung != 0)
                                 {
 
                                     JObject objpengunjung = (JObject)getkamarid;
-                                    Console.WriteLine("1. nama 2.nik 3.no hp");
-                                    Console.Write("PILIH : ");
+
+
+                                    Console.WriteLine("1.Nama\t2.NIK\t3.No Hp");
+                                    Console.Write("Pilih : ");
+                                    Console.ForegroundColor = ConsoleColor.Green;
                                     int pilihedit = int.Parse(Console.ReadLine());
+                                    Console.ResetColor();
                                     var datapengunjung = objpengunjung.GetValue("pengunjung") as JObject;
                                     switch (pilihedit)
                                     {
@@ -179,8 +176,20 @@ namespace proj_pemdas
                                 else
                                 {
                                     Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("!!Kamar sudah terisi!!");
+                                    Console.WriteLine("!!Kamar belum terisi!!");
                                     Console.ResetColor();
+                                    Console.WriteLine("+---------------------------------------------------------------------------------+");
+                                    Console.WriteLine("1.kembali");
+                                    Console.WriteLine("+---------------------------------------------------------------------------------+");
+                                    Console.Write("Pilih: ");
+                                    int x = int.Parse(Console.ReadLine());
+                                    switch(x)
+                                        {
+                                        case 1:
+                                            Console.Clear();
+                                            lanjut.back();
+                                            break;
+                                    }
                                 }
                             }
                         }
@@ -201,13 +210,18 @@ namespace proj_pemdas
                 throw;
             }
         }
-        public void kembali1()
+        public void kembali1()//method tampilan kembali
         {
             onlyjson show = new onlyjson();
             @class call = new @class();
             editreservation lanjut = new editreservation();
+            Console.WriteLine("+---------------------------------------------------------------------------------+");
             Console.WriteLine("1.Kembali");
+            Console.WriteLine("+---------------------------------------------------------------------------------+");
+            Console.Write("Pilih: ");
+            Console.ForegroundColor = ConsoleColor.Green;
             int kembali = int.Parse(Console.ReadLine());
+            Console.ResetColor();
             switch (kembali)
             {
                 case 1:

@@ -12,31 +12,35 @@ namespace proj_pemdas
     internal class checkout
     {
         // private string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
-        private string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
+        private string jsonFile = @"E:\Edgar\Kuliah\Pemdas\Proyek Akhir\proj_pemdas\data.json";
         public void submenu()
         {
             @class call = new @class();
             onlyjson show = new onlyjson();
             checkout lanjut = new checkout();
-            call.setup();//memanggil method setup di class @class
-            call.title();//memanggil method title di class @class
-            show.GetUserDetails();//memanggil data json di data.json
-            lanjut.checkoutback();
+            call.setup();//memanggil method setup
+            call.title();//memanggil method title
+            show.GetUserDetails();//memanggil method tabel data
+            lanjut.checkoutback();//memanggil method menu kembali
         }
-        public void cekout()
+        public void cekout()//method menghapus data
         {
             var json = File.ReadAllText(jsonFile);
             try
             {
                 var jObject = JObject.Parse(json);
                 JArray dataarray = (JArray)jObject.SelectToken("data");
-                Console.WriteLine("Pilih Kelas\t: ");
+                Console.Write("Pilih Kelas: ");
+                Console.ForegroundColor = ConsoleColor.Green;
                 var kelasid = int.Parse(Console.ReadLine());
+                Console.ResetColor();
 
                 if (kelasid > 0)
                 {
-                    Console.WriteLine("Pilih Kamar\t: ");
+                    Console.Write("Pilih Kamar: ");
+                    Console.ForegroundColor = ConsoleColor.Green;
                     var kamarid = int.Parse(Console.ReadLine());
+                    Console.ResetColor();
 
                     if (kamarid > 0)
                     {
@@ -50,6 +54,7 @@ namespace proj_pemdas
 
                                 JObject objpengunjung = (JObject)getkamarid;
                                 var datapengunjung = objpengunjung.GetValue("pengunjung") as JObject;
+                                //mengapus data yang ada
                                 datapengunjung.Remove("nama");
                                 datapengunjung.Remove("nik");
                                 datapengunjung.Remove("nohp");
@@ -60,16 +65,16 @@ namespace proj_pemdas
                                 
                                 //back
                                 checkout lanjut = new checkout();
-                                Console.Clear();
+                                Console.Clear();//menghapus tampilan
                                 @class call = new @class();
                                 onlyjson show = new onlyjson();
                                 addreservation add = new addreservation();
                                 checkout checkout = new checkout();
-                                call.setup();
-                                call.title();
-                                show.GetUserDetails();
-                                call.saved();
-                                lanjut.kembali();
+                                call.setup();//memanggil method setup
+                                call.title();//memanggil method header
+                                show.GetUserDetails();//memanggil method tabel data
+                                call.saved();//memanggil method tampilan save
+                                lanjut.kembali();//memanggil method kembali
 
                             }
                         }
@@ -93,56 +98,59 @@ namespace proj_pemdas
                 throw;
             }
         }
-        public void kembali()
+        public void kembali()//method kembali
         {
             //kembali
             @class call = new @class();
             onlyjson show = new onlyjson();
-            addreservation add = new addreservation();
-            checkout checkout = new checkout();
             checkout lanjut = new checkout();
             Console.WriteLine("+---------------------------------------------------------------------------------+");
-            Console.WriteLine("");
             Console.WriteLine("Menu");
-            Console.WriteLine("1.Kembali");
-            Console.WriteLine("2.Kembali ke mainmenu");
+            Console.WriteLine("\t1.Kembali");
+            Console.WriteLine("-------------------------");
+            Console.WriteLine("\t2.Kembali ke mainmenu");
             Console.WriteLine("+---------------------------------------------------------------------------------+");
+            Console.Write("Pilih: ");
+            Console.ForegroundColor = ConsoleColor.Green;
             string select = Console.ReadLine();
+            Console.ResetColor();
             switch (select)
             {
                 case "1":
-                    Console.Clear();
-                    call.setup();
-                    call.title();
-                    show.GetUserDetails();
-                    lanjut.cekout();
+                    Console.Clear();//menghapus tampilan
+                    call.setup();//memanggil method setup
+                    call.title();//memanggil method header
+                    show.GetUserDetails();//memanggil method tabel data
+                    lanjut.checkoutback();//memanggil method menu kembali
+                    lanjut.cekout();//memanggil method checkout
                     break;
                 case "2":
-                    Console.Clear();
-                    call.backmainmenu();
+                    Console.Clear();//menghapus tampilan
+                    call.backmainmenu();//memanggil method main menu
                     break;
                 default:
-                    Console.Clear();
-                    call.setup();
-                    call.title();
-                    show.GetUserDetails();
-
-                    call.wrong();
-                    lanjut.kembali();
+                    Console.Clear();//menghapus tampilan
+                    call.setup();//memanggil method setup
+                    call.title();//memanggil method header
+                    show.GetUserDetails();//memanggil method tabel data
+                    call.wrong();//memanggil method error
+                    lanjut.kembali();//memanggil method kembali
                     break;
             }
         }
-        public void checkoutback()
+        public void checkoutback()//method menu kembali
         {
             @class call = new @class();
-            //
-            Console.WriteLine("Menu: ");
             Console.WriteLine("");
             Console.WriteLine("\t1. Checkout ");
+            Console.WriteLine("\t---------------------");
             Console.WriteLine("\t2. main menu");
-            string back = (Console.ReadLine());
-            checkout chose = new checkout();
             Console.WriteLine("+---------------------------------------------------------------------------------+");
+            Console.Write("Pilih: ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            string back = (Console.ReadLine());
+            Console.ResetColor();
+            checkout chose = new checkout();
             chose.switchback(back);
         }
         public void switchback(string x)
@@ -154,22 +162,21 @@ namespace proj_pemdas
             switch (x)
             {
                 case "1":
-                    lanjut.cekout();
+                    lanjut.cekout();//memanggil method checkout
                     break;
                 case "2":
-                    Console.Clear();
-                    call.backmainmenu();
+                    Console.Clear();//menghapus tampilan
+                    call.backmainmenu();//memanggil method main menu
                     break;
                 default:
-                    Console.Clear();
-                    call.setup();
-                    call.title();
-                    show.GetUserDetails();
-                    call.wrong();
+                    Console.Clear();//menghapus tampilan
+                    call.setup();//memanggil method setup
+                    call.title();//memanggil method header
+                    show.GetUserDetails();//memanggil method tabel data
+                    call.wrong();//memanggil method error
                     Console.WriteLine("");
                     Console.WriteLine("+---------------------------------------------------------------------------------+");
-                    
-                    lanjut.checkoutback();
+                    lanjut.checkoutback();//memanggil method menu kembali
                     break;
             }
 
