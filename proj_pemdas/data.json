@@ -33,23 +33,11 @@
       "kamar": [
         {
           "id": 3,
-          "pengunjung": {
-            "nama": "123",
-            "nik": "123123123",
-            "nohp": "12321321",
-            "datein": "11/12/22",
-            "time": "08:00"
-          }
+          "pengunjung": {}
         },
         {
           "id": 4,
-          "pengunjung": {
-            "nama": "12321",
-            "nik": "123213213213",
-            "nohp": "121313211",
-            "datein": "10/12/22",
-            "time": "07:15"
-          }
+          "pengunjung": {}
         }
       ]
     },
@@ -60,23 +48,11 @@
       "kamar": [
         {
           "id": 5,
-          "pengunjung": {
-            "nama": "1234",
-            "nik": "123312321",
-            "nohp": "0895421996608",
-            "datein": "10/12/22",
-            "time": "06:55"
-          }
+          "pengunjung": {}
         },
         {
           "id": 6,
-          "pengunjung": {
-            "nama": "132",
-            "nik": "321",
-            "nohp": "123",
-            "datein": "10/12/22",
-            "time": "07:39"
-          }
+          "pengunjung": {}
         }
       ]
     }

@@ -9,7 +9,8 @@ namespace proj_pemdas
     internal class addreservation
     {
         //panggil file json
-        private string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
+        //private string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
+        private string jsonFile = @"E:\Edgar\Kuliah\Pemdas\Proyek Akhir\proj_pemdas\data.json";
         public void menu()
         {
             Console.WriteLine("Menu\t: ");
@@ -19,17 +20,16 @@ namespace proj_pemdas
             Console.WriteLine("\t2.Main menu");
             Console.WriteLine("+---------------------------------------------------------------------------------+");
         }
-        public void pilihan()
+        public void pilihan()//method menu pilihan
         {
             addreservation add = new addreservation();
-            Console.WriteLine("");
-            Console.WriteLine("Pilih Menu: ");
+            Console.Write("Pilih Menu: ");
             Console.ForegroundColor = ConsoleColor.Green;
             int pilih = int.Parse(Console.ReadLine());
             Console.ResetColor();
             add.milih(pilih);
         }
-        public void milih(int x)
+        public void milih(int x)//method switch
         {
             addreservation add = new addreservation();
             @class back = new @class();
@@ -56,7 +56,7 @@ namespace proj_pemdas
                     break;
             }
         }
-        public void submenu()
+        public void submenu()//method tampilan add reservation
         {
             addreservation add = new addreservation();
             @class apalah = new @class();
@@ -66,14 +66,14 @@ namespace proj_pemdas
             add.menu();
             add.pilihan();
         }
-        public void GetUserDetails()
+        public void GetUserDetails()//method tabel data
         {
             onlyjson show = new onlyjson();
             //file data.json di ada di folder bin/debug/net5.0/data.json
             show.GetUserDetails();
 
         }
-        public void add()
+        public void add()//method menambahkan data json
         {
             addreservation add = new addreservation();
             @class apalah = new @class();
@@ -82,12 +82,15 @@ namespace proj_pemdas
             var jObject = JObject.Parse(json);
             JArray dataarray = (JArray)jObject.SelectToken("data");
             Console.Write("Pilih Kelas(Id)\t: ");
+            Console.ForegroundColor = ConsoleColor.Green;
             var kelasid = int.Parse(Console.ReadLine());
-            
+            Console.ResetColor();
             if (kelasid > 0&&kelasid<=3)
             {               
                 Console.Write("Pilih Kamar(No)\t: ");
+                Console.ForegroundColor = ConsoleColor.Green;
                 var kamarid = int.Parse(Console.ReadLine());
+                Console.ResetColor();
                 Console.WriteLine(" ");
                 
                 if (kamarid > 0&&kamarid<=6)
@@ -169,25 +172,29 @@ namespace proj_pemdas
                 add.add();
             }
         }
-        public void payment(int harga)
+        public void payment(int harga)//method pembayaran
         {
             addreservation pay = new addreservation();
             Console.WriteLine("+---------------------------------------------------------------------------------+");
             Console.WriteLine("pembayaran\n");
             Console.WriteLine("Harga : "+harga);
             Console.Write("uang yang diterima : ");
+            Console.ForegroundColor = ConsoleColor.Green;
             int recive = int.Parse(Console.ReadLine());
+            Console.ResetColor();
             int total = recive -  harga;
             if (recive < harga)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Uang anda Kurang!!");
+                Console.ResetColor();
                 pay.payment(harga);
                 
             }
             else
             Console.WriteLine("Kembali Rp "+total+"\n");
         }
-        public void kembali()
+        public void kembali()//method menu kembali
         {
             //kembali
             @class call = new @class();
@@ -198,7 +205,9 @@ namespace proj_pemdas
             Console.WriteLine("1.Tambah reservasi");
             Console.WriteLine("2.Kembali ke mainmenu");
             Console.Write("Pilih : ");
+            Console.ForegroundColor = ConsoleColor.Green;
             string select = Console.ReadLine();
+            Console.ResetColor();
             switch (select)
             {
                 case "1":

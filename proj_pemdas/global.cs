@@ -6,7 +6,7 @@ namespace proj_pemdas
 {
     internal class @class //Class Khusus menyimpan Method
     {
-        public void saved()
+        public void saved()//method tampilan save
         {
             Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.Green;
@@ -15,26 +15,25 @@ namespace proj_pemdas
             Console.ResetColor();
         }
         //setup
-        public void setup()
+        public void setup()//method setup lebar dan tinggi jendela console app
         {
             Console.SetWindowSize(120, 40);
         }
-        public void title()
+        public void title()//method header
         {
             //title
             Console.WriteLine("\t\t+-------------------------------+");
             Console.WriteLine("\t\t|\tHOTEL RESERVATION\t|");
             Console.WriteLine("\t\t+-------------------------------+");
         }
-        public void wrong()
+        public void wrong()//method tampilan error
         {
-            Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("ERROR : Input yang anda masukan tidak tersedia");
-            Console.WriteLine("");
+            Console.ResetColor(); Console.WriteLine("+---------------------------------------------------------------+");
             Console.ResetColor();
         }
-        public void backmainmenu()
+        public void backmainmenu()//method kembali ke main menu
         {
             @class call = new @class();
             Program back = new Program();
@@ -44,12 +43,12 @@ namespace proj_pemdas
             back.second();
         }
     }
-    //Class khusus untuk menampilkan data.json
+    //Class khusus data.json
     class onlyjson
     {
-        //tiap pindah device ganti path oakwoakwokaw
-        public string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json";
-        public void submenueditdata()
+        //public string jsonFile = @"E:\MMS\kuliah\proj_pemdas\proj_pemdas\data.json"; path json laptop rio
+        private string jsonFile = @"E:\Edgar\Kuliah\Pemdas\Proyek Akhir\proj_pemdas\data.json"; //path json pc edgar
+        public void submenueditdata()//method edit data
         {
 
             var json = File.ReadAllText(jsonFile);
@@ -62,7 +61,7 @@ namespace proj_pemdas
         }
 
 
-        public void GetUserDetails()
+        public void GetUserDetails()//Method menampilkan tabel data
         {
             //file data.json di ada di folder bin/debug/net5.0/data.json
             var json = File.ReadAllText(jsonFile);
